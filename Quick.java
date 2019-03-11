@@ -1,6 +1,11 @@
 public class Quick{
 
   public static int partition (int [] data, int start, int end){
+    int l=4;//makerandom
+    int[] newdata = new int[];
+    for(int i=0;i<data.length;i++){
+      if()
+    }
 
 
 
