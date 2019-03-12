@@ -24,9 +24,9 @@ public class Driver{
 		System.out.println(out+"]");
 	}
 	public static void main(String[] args){
-    int[] ary = new int[]{8,3,4,7,9,1};
+    int[] ary = new int[]{8,3,4,7,9,1,17,27,57,25,6,35};
     //System.out.println(Quick.partition(ary,0,6));
-    System.out.println(Quick.quickselect(ary,3));
+    System.out.println(Quick.quickselect(ary,4));
 
 		/*Random r = new Random(); int sucesses = 0;
 		int tests = 401; System.out.println("testing array sizes 1-400 having numbers from 0-n, asking for a random smallest int. (arrays do not contain duplicates)");

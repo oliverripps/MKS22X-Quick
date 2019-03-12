@@ -58,7 +58,7 @@ public class Quick{
     int pivot = partition(data, start, end);
     //System.out.println(end);
 
-    if (p == pivot){
+    if (p == pivot || end==0 || start==data.length-1){
       return data[p];
     }
     if (p < pivot){
