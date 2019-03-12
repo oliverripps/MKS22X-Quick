@@ -28,8 +28,6 @@ public class Quick{
       l = start;
     }
 
-    //System.out.println(Arrays.toString(data));
-    //System.out.println(testPartition(data, pivotIndex));
     return l;
   }
 
