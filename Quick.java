@@ -2,7 +2,7 @@ public class Quick{
 
   public static int partition (int [] data, int start, int end){
     int l = (int)(Math.random() * (end - start)) + start;
-    //System.out.println(l);
+    //System.out.println(end);
     int p=data[l];
     data[l]=data[start];
     data[start]=p;
@@ -54,20 +54,20 @@ public class Quick{
   }
 
   private static int quickselectH(int[] data, int p, int start, int end){
+    //System.out.println(end);
     int pivot = partition(data, start, end);
+    //System.out.println(end);
+
     if (p == pivot){
       return data[p];
     }
     if (p < pivot){
-      return quickselectH(data, p, start, data[pivot] - 1);
+      return quickselectH(data, p, start, pivot - 1);
     }
     else{
-      return quickselectH(data, p, data[pivot] + 1, end);
+      return quickselectH(data, p, pivot + 1, end);
     }
   }
-  /*return the value that is the kth smallest value of the array. k=0 is the smallest
- */
- public void quickselect(int[] data, int k)
 
 /*Modify the array to be in increasing order.
  */
