@@ -22,7 +22,7 @@ public class Quick{
     data=newdata;
     return f+1;
   }
-  public static int check(int[] data, int index){
+  public static boolean check(int[] data, int index){
     int val=data[index];
     for(int i=0;i<index;i++){
       if(data[i]==val){
