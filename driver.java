@@ -24,7 +24,7 @@ public class Driver{
 		System.out.println(out+"]");
 	}
 	public static void main(String[] args){
-		Random r = new Random(); int sucesses = 0;
+    Random r = new Random(); int sucesses = 0;
 		int tests = 401; System.out.println("testing array sizes 1-400 having numbers from 0-n, asking for a random smallest int. (arrays do not contain duplicates)");
 		for (int i = 1; i < tests; i++){
 			int[] data = new int[i];
@@ -50,5 +50,5 @@ public class Driver{
 		System.out.println( (sucesses == tests-1 ? "CONGRATULATIONS!!!" : "Uh Oh")+" Thats " + (sucesses / (tests-1.0)) * 100 + "% sucess rate.");
 		if (sucesses <= tests-100) {System.out.println("Yikes!!! Maybe he won't test some of those cases right?");}
 		else if (sucesses < tests-1) {System.out.println("Maybe if you compile and run again it will work.");}
-  	}
+  }
 }

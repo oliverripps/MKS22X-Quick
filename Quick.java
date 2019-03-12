@@ -1,6 +1,6 @@
 public class Quick{
 
-  public static int partition (int [] data, int start, int end){
+  public static boolean partition (int [] data, int start, int end){
     int l = (int)(Math.random() * (end - start)) + start;
     //System.out.println(l);
     int p=data[l];
