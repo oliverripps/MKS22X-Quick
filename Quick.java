@@ -52,9 +52,22 @@ public class Quick{
     if (p >= data.length || p < 0){
       throw new ArrayIndexOutOfBoundsException();
     }
-    return quickselectHelper(data, p, 0, data.length - 1);
+    return quickselectH(data, p, 0, data.length - 1);
   }
-  
+
+  private static int quickselectH(int[] data, int p, int start, int end){
+    int pivot = partition(data, start, end);
+    if (p == pivot){
+      return data[p];
+    }
+    if (p < pivot){
+      return quickselectH(data, p, start, data[pivot] - 1);
+    }
+    else{
+      return quickselectH(data, p, data[pivot] + 1, end);
+    }
+  }
+
 
 
 
