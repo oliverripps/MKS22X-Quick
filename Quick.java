@@ -67,6 +67,15 @@ public class Quick{
       return quickselectH(data, p, data[pivot] + 1, end);
     }
   }
+  /*return the value that is the kth smallest value of the array. k=0 is the smallest
+ */
+ public void quickselect(int[] data, int k)
+
+/*Modify the array to be in increasing order.
+ */
+ public void quicksort(int[] data){
+
+ }
 
 
 
