@@ -2,7 +2,7 @@ public class Quick{
 
   public static int partition (int [] data, int start, int end){
     int l = (int)(Math.random() * (end - start)) + start;
-    System.out.println(l);
+    //System.out.println(l);
     int p=data[l];
     data[l]=data[start];
     data[start]=p;
@@ -14,7 +14,7 @@ public class Quick{
         data[start] = data[end];
         data[end] = n;
         end --;
-      } else
+      } else{
         start ++;
       }
     }
@@ -47,6 +47,14 @@ public class Quick{
     }
     return true;
   }
+
+  public static int quickselect(int[] data, int p) throws ArrayIndexOutOfBoundsException{
+    if (p >= data.length || p < 0){
+      throw new ArrayIndexOutOfBoundsException();
+    }
+    return quickselectHelper(data, p, 0, data.length - 1);
+  }
+  
 
 
 
