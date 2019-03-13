@@ -46,25 +46,20 @@ public class Quick{
     return true;
   }
 
-  public static int quickselect(int[] data, int p) throws ArrayIndexOutOfBoundsException{
-    if (p >= data.length || p < 0){//if not possible
-      throw new ArrayIndexOutOfBoundsException();
+  public static int quickselect(int[] data, int p){
+    if (p < 0 || p >= data.length) {
+      throw new IllegalArgumentException() ;
     }
-    if(data.length==1){//if only one element
-      return data[0];//return that element
+    int k = partition(data, 0, data.length - 1) ;
+    while (k != p) {
+      if (p > k) k = partition(data, k, data.length - 1) ;
+      else {
+        k = partition(data, 0, k) ;
+      }
     }
-    return quickselectH(data, p, 0, data.length - 1);//call helper
+    return data[k] ;
   }
-
-  private static int quickselectH(int[] data, int p, int start, int end){
-    if (start>=end){//if they meet or overlap
-      return data[p];//youre done, base case
-    }
-    int pivot = partition(data, start, end);
-    quickselectH(data,p,start,pivot-1);
-    quickselectH(data,p,pivot+1,end);
-    return -1;
-  }
+  
 
 
  public static void quicksort(int[] data){
