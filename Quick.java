@@ -1,35 +1,29 @@
 public class Quick{
 
   public static int partition (int [] data, int start, int end){
-    int l = (int)(Math.random() * (end - start)+start);//pick random pivot
-    //System.out.println(l);
-    int p=data[l];//value at pivot
-    data[l]=data[start];
-    data[start]=p;//swapped start and pivot
-    l=start;
-    start++;
-    while (start < end) {//while there is still swappin to be done
-      if (data[start] > p) {//if startneeds to be swapped
-        int n = data[start];//swapping them to end
-        data[start] = data[end];
-        data[end] = n;
-        end --;//end is one less
-      } else{
-        start ++;//if in right position, go foraard
-      }
+    if (start<0 || start>= data.length || end < 0 || end >= data.length){
+      throw new IndexOutOfBoundsException();
     }
-    if (data[start] > p) {//swapping back pivot
-      data[l] = data[start - 1];
-      data[start - 1] = p;
-      l = start - 1;
-    } else {
-      data[l] = data[start];
-      data[start] = p;
-      l = start;
+    int r = (int)(Math.random() * (end - start) + start);
+    int p = data[r];
+    int hi = end;
+    int low = start;
+    while(low < hi){
+      while (low <=hi && data[low] < p){
+      low++;
     }
-
-    return l;
+      while(hi>= low && data[hi] > p){
+        hi--;
+    }
+      if (hi>low){
+        int temp = data[hi];
+        data[hi] = data[low];
+        data[low] = temp;
+    }
   }
+    return low;
+  }
+
 
   public static boolean check(int[] data, int index){//checks if partition works
     int val=data[index];
@@ -59,7 +53,7 @@ public class Quick{
     }
     return data[k] ;
   }
-  
+
 
 
  public static void quicksort(int[] data){
