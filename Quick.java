@@ -72,7 +72,15 @@ public class Quick{
 /*Modify the array to be in increasing order.
  */
  public void quicksort(int[] data){
-
+   quicksortH(data,0,data.length-1);
+ }
+ public void quicksortH(int[] data,lo,hi){
+   if(lo>=hi){
+     return;
+   }
+   int pivot=partition(ary,lo,hi);
+   quicksortH(ary,pivot+1,hi);
+   quicksortH(ary,lo,pivot-1);
  }
 
 
