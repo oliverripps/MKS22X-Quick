@@ -6,8 +6,9 @@ public class Quick{
     if (start<0 || start>= data.length || end < 0 || end >= data.length){
       throw new IndexOutOfBoundsException();
     }
-    int r = (int)(Math.random() * (end - start + 1));
+    int r = start + (int)(Math.random() * (end - start + 1));
     int p = data[r];
+    move(data, start, r);
     int hi = end;
     int low = start +1;
     while (low != hi) {
@@ -28,10 +29,6 @@ public class Quick{
       return low - 1;
     }
   }
-
-
-
-
   public static boolean check(int[] data, int index){//checks if partition works
     int val=data[index];
     for(int i=0;i<index;i++){
