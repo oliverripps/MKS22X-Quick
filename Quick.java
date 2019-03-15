@@ -10,7 +10,32 @@ public class Quick{
     int r = rng.nextInt(data.length);
     int p = data[r];
     int hi = end;
-    int low = start;
+    int low = start +1;
+    while (low < hi){
+      while (low < hi && data[low] < p){
+       low++;
+     }
+     while (hi > low && data[hi] >= p){
+       hi--;
+     }
+     if (hi > low){
+       move(data, hi, low);
+     }
+     low++;
+     hi--;
+   }
+   while (hi > start && data[hi] >= p) {
+       hi--;
+   }
+
+   if (p > data[hi]) {
+       data[start] = data[hi];
+       data[hi] = p;
+       return hi;
+   }
+   return start;
+
+ }
     while(low < hi){
       while (low <=hi && data[low] < p){
       low++;
