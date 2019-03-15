@@ -48,11 +48,24 @@ public class Quick{
     if (p < 0 || p >= data.length) {
       throw new IllegalArgumentException() ;
     }
-    return quickselectHelper(data, p, 0, data.length - 1);
+    int start = 0;
+  	int end = data.length-1;
+  	while (true){
+  			int pivot = partition(data, start, end);
+  			if (p == pivot){
+          return data[p];
+        }
+  			if (p < pivot){
+          end = pivot;
+        }
+  			else{ start = pivot;
+        }
+  		}
+
 
   }
 
-  private static int quickselectHelper(int[] data, int k, int start, int end){
+  /*private static int quickselectHelper(int[] data, int k, int start, int end){
     int pivot = partition(data, start, end);
     if (k == pivot){
       return data[k];
@@ -66,7 +79,7 @@ public class Quick{
       return data[pivot];
     }
 
-  }
+  }*/
 
 
 
