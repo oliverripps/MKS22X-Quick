@@ -29,6 +29,45 @@ public class Quick{
       return low - 1;
     }
   }
+
+  public static int[] dutchPartition(int[] data, int start,int end){
+    if (start == end){
+      return new int[] {start, start + 1};
+    }
+    int m = 0;
+    if ((data[start] <= data[end] && data[start] >= data[start + (end - start)/2]) || (data[start] >= data[end] && data[start] <= data[start + (end - start)/2])){
+      m = start;
+    }
+    if ((data[end] <= data[start] && data[end] >= data[start + (end - start)/2]) || (data[end] >= data[start] && data[end] <= data[start + (end - start)/2])){
+       m = end;}
+    if ((data[start + (end - start)/2] <= data[end] && data[start + (end - start)/2] >= data[start]) || (data[start + (end - start)/2] >= data[end] && data[start + (end - start)/2] <= data[start])){
+       m = start + (end - start)/2;
+     }
+    int pspot = m;
+    int pivot = data[pspot];
+    move(data, start, pspot);
+    int s = start;
+    int i = start;
+    int e = end;
+    while (i <= e){
+      if (data[i] > pivot){
+        move(data, i, e);
+        e--;
+      }
+      else if(data[i] < pivot) {
+        move(data, i, s);
+        s++; i++;
+      }
+      else{
+        i++;
+      }
+    }
+
+    return new int[] {s, e};
+   }
+
+
+
   public static boolean check(int[] data, int index){//checks if partition works
     int val=data[index];
     for(int i=0;i<index;i++){
@@ -90,14 +129,14 @@ public class Quick{
    if(lo>=hi){
      return;
    }
-   int pivot=partition(ary,lo,hi);
-   quicksortH(ary,lo,pivot-1);
-   quicksortH(ary,pivot+1,hi);
+   int[] pivot=dutchPartition(ary,lo,hi);
+   quicksortH(ary,lo,pivot[0]-1);
+   quicksortH(ary,pivot[1]+1,hi);
 
  }
 
 public static void main(String[]args){
-  System.out.println("Size\t\tMax Value\tquick/builtin ratio ");
+  System.out.println("Size\t\tMax Value\tquick/buisin ratio ");
   int[]MAX_LIST = {1000000000,500,10};
   for(int MAX : MAX_LIST){
     for(int size = 31250; size < 2000001; size*=2){
