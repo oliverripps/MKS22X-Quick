@@ -6,7 +6,8 @@ public class Quick{
     if (start<0 || start>= data.length || end < 0 || end >= data.length){
       throw new IndexOutOfBoundsException();
     }
-    int r = (int)(Math.random() * (end - start) + start);
+    Random rng = new Random();
+    int r = rng.nextInt(data.length);
     int p = data[r];
     int hi = end;
     int low = start;
@@ -104,7 +105,11 @@ public static void main(String[]args){
     System.out.println();
   }
 }
-
+private static void move(int[] data, int i1, int i2){
+     int temp = data[i1];
+     data[i1] = data[i2];
+     data[i2] = temp;
+   }
 
 
 
