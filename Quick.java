@@ -6,51 +6,30 @@ public class Quick{
     if (start<0 || start>= data.length || end < 0 || end >= data.length){
       throw new IndexOutOfBoundsException();
     }
-    Random rng = new Random();
-    int r = rng.nextInt(data.length);
+    int r = (int)(Math.random() * (end - start + 1));
     int p = data[r];
     int hi = end;
     int low = start +1;
-    while (low < hi){
-      while (low < hi && data[low] < p){
-       low++;
-     }
-     while (hi > low && data[hi] >= p){
-       hi--;
-     }
-     if (hi > low){
-       move(data, hi, low);
-     }
-     low++;
-     hi--;
-   }
-   while (hi > start && data[hi] >= p) {
-       hi--;
-   }
-
-   if (p > data[hi]) {
-       data[start] = data[hi];
-       data[hi] = p;
-       return hi;
-   }
-   return start;
-
- }
-    while(low < hi){
-      while (low <=hi && data[low] < p){
-      low++;
+    while (low != hi) {
+      if (p > data[low]) {
+        low += 1;
+      }
+      else if (data[low] >= p){
+        move(data, low, hi);
+        hi -= 1;
+      }
     }
-      while(hi>= low && data[hi] > p){
-        hi--;
+    if (data[low] < p) {
+      move(data, start, low);
+      return low;
     }
-      if (hi>low){
-        int temp = data[hi];
-        data[hi] = data[low];
-        data[low] = temp;
+    else {
+      move(data, start, low - 1);
+      return low - 1;
     }
   }
-    return low;
-  }
+
+
 
 
   public static boolean check(int[] data, int index){//checks if partition works
@@ -72,14 +51,24 @@ public class Quick{
     if (p < 0 || p >= data.length) {
       throw new IllegalArgumentException() ;
     }
-    int k = partition(data, 0, data.length - 1) ;
-    while (k != p) {
-      if (p > k) k = partition(data, k, data.length - 1) ;
-      else {
-        k = partition(data, 0, k) ;
-      }
+    return quickselectHelper(data, p, 0, data.length - 1);
+
+  }
+
+  private static int quickselectHelper(int[] data, int k, int start, int end){
+    int pivot = partition(data, start, end);
+    if (k == pivot){
+      return data[k];
     }
-    return data[k] ;
+    else if (k < pivot){
+      return quickselectHelper(data, k, start, pivot - 1);
+    }
+    else if (k > pivot){
+      return quickselectHelper(data, k, pivot + 1, end);
+    } else{
+      return data[pivot];
+    }
+
   }
 
 
@@ -92,8 +81,9 @@ public class Quick{
      return;
    }
    int pivot=partition(ary,lo,hi);
-   quicksortH(ary,pivot+1,hi);
    quicksortH(ary,lo,pivot-1);
+   quicksortH(ary,pivot+1,hi);
+
  }
 
 public static void main(String[]args){
