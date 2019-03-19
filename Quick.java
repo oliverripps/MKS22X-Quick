@@ -2,6 +2,19 @@ import java.util.*;
 
 public class Quick{
 
+  public static void insertionSort(int arr[]) {
+    int i, key, j;
+    for (i = 1; i < arr.length; i++) {
+        key = arr[i];
+        j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j = j - 1;
+        }
+        arr[j + 1] = key;
+    }
+}
+
   public static int partition (int [] data, int start, int end){
     if (start<0 || start>= data.length || end < 0 || end >= data.length){
       throw new IndexOutOfBoundsException();
@@ -123,7 +136,12 @@ public class Quick{
 
 
  public static void quicksort(int[] data){
+  if(data.length<175){
+     insertionSort(data);
+   }
+   else{
    quicksortH(data,0,data.length-1);
+ }
  }
  public static void quicksortH(int[] ary,int lo,int hi){
    if(lo>=hi){
@@ -137,17 +155,17 @@ public class Quick{
 
 public static void main(String[]args){
   System.out.println("Size\t\tMax Value\tquick/buisin ratio ");
-  int[]MAX_LIST = {1000000000,500,10};
-  for(int MAX : MAX_LIST){
-    for(int size = 31250; size < 2000001; size*=2){
+  //int[]MAX_LIST = {1000000000,500,10};
+//  for(int MAX : MAX_LIST){
+    for(int size = 150; size < 200; size+=2){
       long qtime=0;
       long btime=0;
       //average of 5 sorts.
-      for(int trial = 0 ; trial <=5; trial++){
+      for(int trial = 0 ; trial <=10000; trial++){
         int []data1 = new int[size];
         int []data2 = new int[size];
         for(int i = 0; i < data1.length; i++){
-          data1[i] = (int)(Math.random()*MAX);
+          data1[i] = (int)(Math.random()*100);
           data2[i] = data1[i];
         }
         long t1,t2;
@@ -156,7 +174,7 @@ public static void main(String[]args){
         t2 = System.currentTimeMillis();
         qtime += t2 - t1;
         t1 = System.currentTimeMillis();
-        Arrays.sort(data1);
+        Quick.insertionSort(data1);
         t2 = System.currentTimeMillis();
         btime+= t2 - t1;
         if(!Arrays.equals(data1,data2)){
@@ -164,10 +182,10 @@ public static void main(String[]args){
           System.exit(0);
         }
       }
-      System.out.println(size +"\t\t"+MAX+"\t"+1.0*qtime/btime);
+      System.out.println(size +"\t\t"+"\t"+1.0*qtime/btime);
     }
     System.out.println();
-  }
+
 }
 private static void move(int[] data, int i1, int i2){
      int temp = data[i1];
